@@ -7,6 +7,6 @@ This app includes:
  - Dependency Injection
  - API(Network) Calls (Repository -> APIClient) 
  - Followd SOLID Principle
- - New Observation Framework(Removed @Published via @Observable on Entity/Class)
+ - New Observation Framework(No `@Published` managed via `@Observable` on ViewModels)
  - Fully Testable Code (With Swift Testing Framework)
 
