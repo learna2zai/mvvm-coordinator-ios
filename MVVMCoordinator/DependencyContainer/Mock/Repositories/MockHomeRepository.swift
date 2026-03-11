@@ -10,7 +10,7 @@ import Foundation
 
 #if DEBUG
 
-final class MockHomeRepository: HomeRepository {
+struct MockHomeRepository: HomeRepository {
     
     private let apiClient: NetworkClient
     

@@ -53,5 +53,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(viewModel: MockDIContainer().homeViewModel)
+    HomeView(viewModel: MockDIContainer().makeHomeViewModel())
 }

@@ -31,7 +31,7 @@ class RegisterViewModel {
                                                      username: username,
                                                      password: password)
         } catch {
-            errorMessage = "Failed to login."
+            errorMessage = "Failed to login. \(error.localizedDescription)"
             return false
         }
     }

@@ -4,13 +4,13 @@
 //
 //  Created on 11/03/26.
 //  Copyright © 2026 . All rights reserved.
-//  
+//
 
 import Foundation
 
 #if DEBUG
 
-class MockApiClient: NetworkClient {
+struct MockApiClient: NetworkClient {
     func send<T>(request: URLRequest) async throws -> T where T : Decodable {
         let data = try! JSONEncoder().encode([UserDTO]())
         return try JSONDecoder().decode(T.self, from: data)
@@ -27,32 +27,37 @@ final class MockDIContainer: Container {
     
     // MARK: - Repositories
     
-    lazy var authRepository: AuthRepository = {
-        return MockAuthRepository(apiClient: apiClient)
-    }()
+    func makeAuthRepository() -> any AuthRepository {
+         MockAuthRepository(apiClient: apiClient)
+    }
     
-    lazy var homeRepository: HomeRepository = {
-        return MockHomeRepository(apiClient: apiClient)
-    }()
+    func makeHomeRepository() -> any HomeRepository {
+         MockHomeRepository(apiClient: apiClient)
+    }
     
     // MARK: - View Models
     
-    lazy var loginViewModel: LoginViewModel = {
-        return LoginViewModel(authRepository: authRepository)
-    }()
+    func makeLoginViewModel() -> LoginViewModel {
+         LoginViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var registerViewModel: RegisterViewModel = {
-        return RegisterViewModel(authRepository: authRepository)
-    }()
+    func makeRegisterViewModel() -> RegisterViewModel {
+         RegisterViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var homeViewModel: HomeViewModel = {
-        return HomeViewModel(homeRepository: homeRepository)
-    }()
+    func makeForgotPasswordViewModel() -> ForgotPasswordViewModel {
+        ForgotPasswordViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var settingsViewModel: SettingsViewModel = {
-        return SettingsViewModel(authRepository: authRepository)
-    }()
+    func makeHomeViewModel() -> HomeViewModel {
+         HomeViewModel(homeRepository: makeHomeRepository())
+    }
+    
+    func makeSettingsViewModel() -> SettingsViewModel {
+         SettingsViewModel(authRepository: makeAuthRepository())
+    }
 }
+
 
 #endif // DEBUG
 

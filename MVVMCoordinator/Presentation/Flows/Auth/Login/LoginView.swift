@@ -20,23 +20,18 @@ struct LoginView: View {
     }
     
     var body: some View {
-        ZStack {
-            LinearGradient(colors: [.gray.opacity(0.2), .gray.opacity(0.6)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                .ignoresSafeArea()
-            
+        BaseAuthView {
             VStack(alignment: .center, spacing: 20) {
                 Text("Login To App")
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .foregroundStyle(.secondary)
-                    .padding(.bottom)
+                    .makeTitle()
                 
                 VStack(spacing: 20) {
                     TextField("Username", text: $viewModel.username)
                     SecureField("Password", text: $viewModel.password)
                 }
                 .textFieldStyle(.roundedBorder)
-                Button {
+                
+                PrimaryButton(title: "Login", isLoading: $viewModel.isLoading) {
                     Task {
                         let result = await viewModel.login()
                         if result {
@@ -45,39 +40,35 @@ struct LoginView: View {
                             }
                         }
                     }
-                } label: {
-                    Group {
-                        if viewModel.isLoading {
-                            ProgressView()
-                                .tint(Color.white)
-                                .padding(2)
-                                
-                        } else {
-                            Text("Login")
-                                .font(.headline)
+                }
+                
+                HStack(alignment: .center) {
+//                    Spacer()
+                    Button("Register Now!") {
+                        withAnimation {
+                            coordinator.present(.fullScreen)
                         }
                     }
-                    .frame(maxWidth: .greatestFiniteMagnitude)
-                    .padding(.vertical, 10)
-                }
-                .foregroundStyle(.white)
-                .background(Color.orange)
-                .cornerRadius(10)
-                
-                Button("Register New") {
-                    withAnimation {
-                        coordinator.goTo(.register)
+                    Spacer()
+                    Text("-- ✤ --")
+                    Spacer()
+                    Button("Forgot password?") {
+                        withAnimation {
+                            coordinator.present(.sheet)
+                        }
                     }
+//                    Spacer()
                 }
+                .font(.callout)
+//                .padding(8)
             }
-            .padding()
         }
     }
 }
 
 #Preview {
     let container = MockDIContainer()
-    LoginView(viewModel: container.loginViewModel,
+    LoginView(viewModel: container.makeLoginViewModel(),
               coordinator: AuthCoordinator(diContainer: container))
-        .environment(AppCoordinator())
+    .environment(AppCoordinator())
 }

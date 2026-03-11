@@ -15,9 +15,18 @@ class AuthCoordinator {
     enum Routes: Hashable {
         case login
         case register
+        case forgotPassword
+    }
+    
+    enum PresentationType: Hashable {
+        case sheet
+        case fullScreen
     }
     
     var path = NavigationPath()
+    
+    var isSheetPresented: Bool = false
+    var isFullScreenPresented: Bool = false
     
     private let diContainer: Container
     
@@ -33,11 +42,12 @@ class AuthCoordinator {
     func showView(_ route: Routes) -> some View {
         switch route {
             case .login:
-                LoginView(viewModel: diContainer.loginViewModel,
+                LoginView(viewModel: diContainer.makeLoginViewModel(),
                           coordinator: self)
             case .register:
-                RegisterView(viewModel: diContainer.registerViewModel,
-                             coordinator: self)
+                RegisterView(viewModel: diContainer.makeRegisterViewModel())
+            case .forgotPassword:
+                ForgotPasswordView(viewModel: diContainer.makeForgotPasswordViewModel())
         }
     }
     
@@ -45,8 +55,16 @@ class AuthCoordinator {
         path.append(route)
     }
     
-    func dismiss() {
+    func pop() {
         guard !path.isEmpty else { return }
         path.removeLast()
+    }
+    
+    func present(_ type: PresentationType) {
+        if type == .fullScreen {
+            isFullScreenPresented = true
+        } else {
+            isSheetPresented = true
+        }
     }
 }
