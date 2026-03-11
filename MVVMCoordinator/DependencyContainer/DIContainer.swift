@@ -4,7 +4,7 @@
 //
 //  Created on 11/03/26.
 //  Copyright © 2026 . All rights reserved.
-//  
+//
 
 import Foundation
 
@@ -18,29 +18,33 @@ final class DIContainer: Container {
     
     // MARK: - Repositories
     
-    lazy var authRepository: AuthRepository = {
-        return AuthRepositoryImpl(apiClient: apiClient)
-    }()
+    func makeAuthRepository() -> AuthRepository {
+        AuthRepositoryImpl(apiClient: apiClient)
+    }
     
-    lazy var homeRepository: HomeRepository = {
-        return HomeRepositoryImpl(apiClient: apiClient)
-    }()
+    func makeHomeRepository() -> HomeRepository {
+        HomeRepositoryImpl(apiClient: apiClient)
+    }
     
     // MARK: - View Models
     
-    lazy var loginViewModel: LoginViewModel = {
-        return LoginViewModel(authRepository: authRepository)
-    }()
+    func makeLoginViewModel() -> LoginViewModel {
+        LoginViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var registerViewModel: RegisterViewModel = {
-        return RegisterViewModel(authRepository: authRepository)
-    }()
+    func makeRegisterViewModel() -> RegisterViewModel {
+        RegisterViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var homeViewModel: HomeViewModel = {
-        return HomeViewModel(homeRepository: homeRepository)
-    }()
+    func makeForgotPasswordViewModel() -> ForgotPasswordViewModel {
+        ForgotPasswordViewModel(authRepository: makeAuthRepository())
+    }
     
-    lazy var settingsViewModel: SettingsViewModel = {
-        return SettingsViewModel(authRepository: authRepository)
-    }()
+    func makeHomeViewModel() -> HomeViewModel {
+        HomeViewModel(homeRepository: makeHomeRepository())
+    }
+    
+    func makeSettingsViewModel() -> SettingsViewModel {
+        SettingsViewModel(authRepository: makeAuthRepository())
+    }
 }

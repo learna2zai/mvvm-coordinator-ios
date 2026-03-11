@@ -12,7 +12,7 @@ struct DIContainerTests {
         let container = DIContainer(apiClient: apiClient)
         
         // Repositories
-        #expect(container.authRepository is AuthRepositoryImpl)
-        #expect(container.homeRepository is HomeRepositoryImpl)
+        #expect(container.makeAuthRepository() is AuthRepositoryImpl)
+        #expect(container.makeHomeRepository() is HomeRepositoryImpl)
     }
 }

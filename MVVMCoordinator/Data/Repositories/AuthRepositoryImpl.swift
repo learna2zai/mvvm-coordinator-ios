@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AuthRepositoryImpl: AuthRepository {
+struct AuthRepositoryImpl: AuthRepository {
     
     private let apiClient: NetworkClient
     
@@ -23,6 +23,11 @@ class AuthRepositoryImpl: AuthRepository {
     }
     
     func register(name: String, username: String, password: String) async throws -> Bool {
+        try await Task.sleep(for: .seconds(1))
+        return true
+    }
+    
+    func forgotPassword(username: String) async throws -> Bool {
         try await Task.sleep(for: .seconds(1))
         return true
     }

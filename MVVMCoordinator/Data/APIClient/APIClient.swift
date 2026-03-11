@@ -8,7 +8,7 @@
 
 import Foundation
 
-class APIClient: NetworkClient {
+struct APIClient: NetworkClient {
     private let session: URLSession
     
     init(session: URLSession = .shared) {

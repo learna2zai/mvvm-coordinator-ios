@@ -1,24 +1,28 @@
 //
-//  RegisterView.swift
+//  ForgotPasswordView.swift
 //  MVVMCoordinator
 //
-//  Created on 10/03/26.
+//  Created on 11/03/26.
 //  Copyright © 2026 . All rights reserved.
 //
 
 import SwiftUI
 
-struct RegisterView: View {
+
+import SwiftUI
+
+struct ForgotPasswordView: View {
     
     @Environment(\.dismiss) private var dismiss
-    @State var viewModel: RegisterViewModel
+    @State var viewModel: ForgotPasswordViewModel
     
-    init( viewModel: RegisterViewModel) {
+    init( viewModel: ForgotPasswordViewModel) {
         self.viewModel = viewModel
     }
     
     var body: some View {
         BaseAuthView {
+            
             VStack {
                 HStack {
                     Spacer()
@@ -31,19 +35,15 @@ struct RegisterView: View {
                 .padding(.bottom, 100)
                 
                 VStack(alignment: .center, spacing: 20) {
-                    Text("Register New Account")
+                    Text("Reset your password")
                         .makeTitle()
-
-                    VStack(spacing: 20) {
-                        TextField("Name", text: $viewModel.name)
-                        TextField("Username", text: $viewModel.username)
-                        SecureField("Password", text: $viewModel.password)
-                    }
-                    .textFieldStyle(.roundedBorder)
                     
-                    PrimaryButton(title: "Register", isLoading: $viewModel.isLoading) {
+                    TextField("Username", text: $viewModel.username)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    PrimaryButton(title: "Submit", isLoading: $viewModel.isLoading) {
                         Task {
-                            let result = await viewModel.register()
+                            let result = await viewModel.submit()
                             if result { dismiss() }
                         }
                     }
@@ -56,5 +56,5 @@ struct RegisterView: View {
 
 #Preview {
     let container = MockDIContainer()
-    RegisterView(viewModel: container.makeRegisterViewModel())
+    ForgotPasswordView(viewModel: container.makeForgotPasswordViewModel())
 }

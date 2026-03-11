@@ -11,5 +11,6 @@ import Foundation
 protocol AuthRepository {
     func login(username: String, password: String) async throws -> Bool
     func register(name: String, username: String, password: String) async throws -> Bool
+    func forgotPassword(username: String) async throws -> Bool
     func logout() async throws -> Bool
 }

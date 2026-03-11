@@ -24,10 +24,10 @@ class TabsCoordinator {
     }
     
     func makeHomeView() -> some View {
-        HomeView(viewModel: diContainer.homeViewModel)
+        HomeView(viewModel: diContainer.makeHomeViewModel())
     }
     
     func makeSettingsView() -> some View {
-        SettingsView(viewModel: diContainer.settingsViewModel)
+        SettingsView(viewModel: diContainer.makeSettingsViewModel())
     }
 }

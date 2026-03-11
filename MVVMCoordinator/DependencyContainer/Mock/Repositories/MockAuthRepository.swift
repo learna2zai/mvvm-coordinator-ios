@@ -10,7 +10,7 @@ import Foundation
 
 #if DEBUG
 
-class MockAuthRepository: AuthRepository {
+struct MockAuthRepository: AuthRepository {
     
     private let apiClient: NetworkClient
     
@@ -23,6 +23,10 @@ class MockAuthRepository: AuthRepository {
     }
     
     func register(name: String, username: String, password: String) async throws -> Bool {
+        true
+    }
+    
+    func forgotPassword(username: String) async throws -> Bool {
         true
     }
     

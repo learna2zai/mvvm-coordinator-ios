@@ -29,7 +29,7 @@ struct RegisterViewModelTests {
         viewModel.password = "badpassword"
         let result = await viewModel.register()
         #expect(result == false, "Should fail with invalid details")
-        #expect(viewModel.errorMessage == "Failed to login.", "Proper error message on failure")
+        #expect(viewModel.errorMessage == "Failed to login. The operation couldn’t be completed. (TestAuthRepository error 2.)", "Proper error message on failure")
         #expect(repo.didCallRegister == true, "Repository register should be called")
     }
 

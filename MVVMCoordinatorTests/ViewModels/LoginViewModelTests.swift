@@ -13,6 +13,7 @@ class TestAuthRepository: AuthRepository {
     var didCallLogin = false
     var didCallRegister = false
     var didCallLogout = false
+    var didCallForgotPassword = false
     
     func login(username: String, password: String) async throws -> Bool {
         didCallLogin = true
@@ -26,6 +27,16 @@ class TestAuthRepository: AuthRepository {
     
     func register(name: String, username: String, password: String) async throws -> Bool {
         didCallRegister = true
+        switch mode {
+        case .success:
+            return true
+        case .failure:
+            throw NSError(domain: "TestAuthRepository", code: 2, userInfo: nil)
+        }
+    }
+    
+    func forgotPassword(username: String) async throws -> Bool {
+        didCallForgotPassword = true
         switch mode {
         case .success:
             return true
