@@ -23,7 +23,8 @@ class AuthRepositoryImpl: AuthRepository {
     }
     
     func register(name: String, username: String, password: String) async throws -> Bool {
-        true
+        try await Task.sleep(for: .seconds(1))
+        return true
     }
     
     func logout() async throws -> Bool {
