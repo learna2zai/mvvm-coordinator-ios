@@ -28,7 +28,7 @@ class SettingsViewModel {
         do {
            return try await authRepository.logout()
         } catch {
-            errorMessage = "Faild to logout"
+            errorMessage = "Failed to logout"
             return false
         }
     }

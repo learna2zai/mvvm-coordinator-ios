@@ -12,7 +12,8 @@ import Foundation
 
 class MockApiClient: NetworkClient {
     func send<T>(request: URLRequest) async throws -> T where T : Decodable {
-        return try JSONDecoder().decode(T.self, from: Data())
+        let data = try! JSONEncoder().encode([UserDTO]())
+        return try JSONDecoder().decode(T.self, from: data)
     }
 }
 

@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol NetworkClient {
-    func send<T: Decodable>(request: URLRequest) async throws -> T
-}
-
 class APIClient: NetworkClient {
     private let session: URLSession
     
