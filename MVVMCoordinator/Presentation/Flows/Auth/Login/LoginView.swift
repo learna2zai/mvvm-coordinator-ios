@@ -43,7 +43,6 @@ struct LoginView: View {
                 }
                 
                 HStack(alignment: .center) {
-//                    Spacer()
                     Button("Register Now!") {
                         withAnimation {
                             coordinator.present(.fullScreen)
@@ -57,10 +56,8 @@ struct LoginView: View {
                             coordinator.present(.sheet)
                         }
                     }
-//                    Spacer()
                 }
                 .font(.callout)
-//                .padding(8)
             }
         }
     }

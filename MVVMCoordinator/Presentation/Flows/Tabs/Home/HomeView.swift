@@ -29,11 +29,9 @@ struct HomeView: View {
                     }
                 }
             }
-            .onAppear(perform: {
-                Task {
-                    await viewModel.fetchUsers()
-                }
-            })
+            .task {
+                await viewModel.fetchUsers()
+            }
             .overlay {
                 if !viewModel.isLoading && viewModel.errorMessage == nil && viewModel.users.isEmpty {
                     ContentUnavailableView("Users list is empty",

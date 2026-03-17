@@ -22,12 +22,13 @@ struct AuthFlowView: View {
                 .navigationDestination(for: AuthCoordinator.Routes.self) {
                     coordinator.showView($0)
                 }
-                .sheet(isPresented: $coordinator.isSheetPresented, content: {
-                    coordinator.showView(.forgotPassword)
-                })
-                .fullScreenCover(isPresented: $coordinator.isFullScreenPresented) {
-                    coordinator.showView(.register)
-                }
+
+        }
+        .sheet(isPresented: $coordinator.isSheetPresented, content: {
+            coordinator.showView(.forgotPassword)
+        })
+        .fullScreenCover(isPresented: $coordinator.isFullScreenPresented) {
+            coordinator.showView(.register)
         }
     }
 }
