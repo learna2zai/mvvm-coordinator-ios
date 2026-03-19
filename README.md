@@ -1,4 +1,4 @@
-# MVVM + Coordinator
+# MVVM + Coordinator + Clean Architecture
 
 Sample applications with mvvm + coordinator pattern.
 
