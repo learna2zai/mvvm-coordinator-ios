@@ -29,6 +29,7 @@ struct AppTabView: View {
 }
 
 #Preview {
-    AppTabView(coordinator: TabsCoordinator(diContainer: MockDIContainer()))
-        .environment(AppCoordinator())
+    let container = MockDIContainer()
+    AppTabView(coordinator: TabsCoordinator(diContainer: container))
+        .environment(AppCoordinator(diContainer: container))
 }

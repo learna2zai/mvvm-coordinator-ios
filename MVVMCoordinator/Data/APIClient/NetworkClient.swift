@@ -6,8 +6,6 @@
 //  Copyright © 2026 . All rights reserved.
 //  
 
-import Foundation
+import NetraLink
 
-protocol NetworkClient {
-    func send<T: Decodable>(request: URLRequest) async throws -> T
-}
+typealias NetworkClient = INetraLink

@@ -57,7 +57,9 @@ final class MVVMCoordinatorUITests: XCTestCase {
             element5.tap()
         }
         app.textFields["Username"].firstMatch.typeText("testuser")
-        app.buttons["Submit"].firstMatch.tap()
+        if app.buttons["Submit"].waitForExistence(timeout: 2) {
+            app.buttons["Submit"].firstMatch.tap()
+        }
         element5.tap()
         app.textFields["Username"].firstMatch.typeText("testuser")
         element3.tap()

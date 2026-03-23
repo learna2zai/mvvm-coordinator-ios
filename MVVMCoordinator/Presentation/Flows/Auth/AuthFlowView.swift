@@ -34,6 +34,7 @@ struct AuthFlowView: View {
 }
 
 #Preview {
-    AuthFlowView(coordinator: AuthCoordinator(diContainer: MockDIContainer()))
-        .environment(AppCoordinator())
+    let container = MockDIContainer()
+    AuthFlowView(coordinator: AuthCoordinator(diContainer: container))
+        .environment(AppCoordinator(diContainer: container))
 }

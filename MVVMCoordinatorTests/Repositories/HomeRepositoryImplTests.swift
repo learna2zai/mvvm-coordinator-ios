@@ -1,9 +1,10 @@
 import Foundation
 import Testing
+import NetraLink
 @testable import MVVMCoordinator
 
-class MockClient: NetworkClient {
-    func send<T>(request: URLRequest) async throws -> T where T : Decodable {
+struct MockClient: NetworkClient {
+    func send<T>(request: APIRequest) async throws -> T where T : Decodable {
         // Return mock data for UserDTO array
         let dtos = [
             UserDTO(id: 1, name: "A", email: "a@example.com", phone: "123"),

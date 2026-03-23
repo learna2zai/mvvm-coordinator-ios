@@ -67,5 +67,5 @@ struct LoginView: View {
     let container = MockDIContainer()
     LoginView(viewModel: container.makeLoginViewModel(),
               coordinator: AuthCoordinator(diContainer: container))
-    .environment(AppCoordinator())
+    .environment(AppCoordinator(diContainer: container))
 }

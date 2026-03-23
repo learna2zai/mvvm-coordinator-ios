@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
+import NetraLink
 
 @main
 struct MVVMCoordinatorApp: App {
-    private let coordinator = AppCoordinator()
+    private let coordinator = AppCoordinator(diContainer: DIContainer())
     
     var body: some Scene {
         WindowGroup {

@@ -8,8 +8,7 @@ struct DIContainerTests {
     @Test("DIContainer instantiates repositories and view models")
     func testDIContainerWiresDependencies() async throws {
         // Use mock API client to isolate from networking
-        let apiClient = MockApiClient()
-        let container = DIContainer(apiClient: apiClient)
+        let container = DIContainer()
         
         // Repositories
         #expect(container.makeAuthRepository() is AuthRepositoryImpl)

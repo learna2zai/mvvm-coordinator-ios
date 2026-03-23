@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import NetraLink
 
 #if DEBUG
 
-struct MockApiClient: NetworkClient {
-    func send<T>(request: URLRequest) async throws -> T where T : Decodable {
+struct MockApiClient: INetraLink {
+    func send<T>(request: APIRequest) async throws -> T where T : Decodable {
         let data = try! JSONEncoder().encode([UserDTO]())
         return try JSONDecoder().decode(T.self, from: data)
     }

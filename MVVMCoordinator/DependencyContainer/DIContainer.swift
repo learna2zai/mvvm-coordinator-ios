@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import NetraLink
 
 final class DIContainer: Container {
     
     private let apiClient: NetworkClient
     
-    init(apiClient: NetworkClient = APIClient()) {
-        self.apiClient = apiClient
+    init() {
+        self.apiClient = NetraLink(baseUrl: "https://jsonplaceholder.typicode.com")
     }
     
     // MARK: - Repositories

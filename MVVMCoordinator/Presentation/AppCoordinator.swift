@@ -33,7 +33,7 @@ class AppCoordinator {
     /// Initializes the AppCoordinator with a dependency injection container.
     /// Uses mock dependencies if the USE_MOCK_API environment variable is set.
     /// Also triggers login state check on initialization.
-    init(diContainer: Container = DIContainer()) {
+    init(diContainer: Container) {
         if (ProcessInfo.processInfo.environment["USE_MOCK_API"] == "true") {
             self.diContainer = MockDIContainer()
         } else {
