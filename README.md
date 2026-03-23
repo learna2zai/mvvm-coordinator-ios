@@ -5,6 +5,7 @@ Sample applications with mvvm + coordinator pattern.
 This app includes: 
  - MVVM + Coordinator pattern
  - Dependency Injection
+ - Swift Package Manager - [NetraLink(Network Lib) integration](https://github.com/learna2zai/netra-link)
  - API(Network) Calls (Repository -> APIClient) 
  - Followd SOLID Principle
  - New Observation Framework(No `@Published` managed via `@Observable` on ViewModels)

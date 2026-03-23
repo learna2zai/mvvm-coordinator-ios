@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F436AB62F70699900A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436AB52F70699900A738E6 /* NetraLink */; };
+		1F436B2D2F710D8B00A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2C2F710D8B00A738E6 /* NetraLink */; };
+		1F436B302F710E6E00A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2F2F710E6E00A738E6 /* NetraLink */; };
 		1F8C1D4F2F603BD60019A501 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1F8C1D4D2F603BD60019A501 /* .gitignore */; };
 		1F8C1D502F603BD60019A501 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F8C1D4E2F603BD60019A501 /* README.md */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F436AB62F70699900A738E6 /* NetraLink in Frameworks */,
+				1F436B2D2F710D8B00A738E6 /* NetraLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F436B302F710E6E00A738E6 /* NetraLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +85,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F436B2E2F710E6E00A738E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		1F8C1D0E2F603BA40019A501 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +100,7 @@
 				1F8C1D192F603BA40019A501 /* MVVMCoordinator */,
 				1F8C1D272F603BA50019A501 /* MVVMCoordinatorTests */,
 				1F8C1D312F603BA50019A501 /* MVVMCoordinatorUITests */,
+				1F436B2E2F710E6E00A738E6 /* Frameworks */,
 				1F8C1D182F603BA40019A501 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -121,6 +135,8 @@
 			);
 			name = MVVMCoordinator;
 			packageProductDependencies = (
+				1F436AB52F70699900A738E6 /* NetraLink */,
+				1F436B2C2F710D8B00A738E6 /* NetraLink */,
 			);
 			productName = MVVMCoordinator;
 			productReference = 1F8C1D172F603BA40019A501 /* MVVMCoordinator.app */;
@@ -144,6 +160,7 @@
 			);
 			name = MVVMCoordinatorTests;
 			packageProductDependencies = (
+				1F436B2F2F710E6E00A738E6 /* NetraLink */,
 			);
 			productName = MVVMCoordinatorTests;
 			productReference = 1F8C1D242F603BA50019A501 /* MVVMCoordinatorTests.xctest */;
@@ -204,6 +221,9 @@
 			);
 			mainGroup = 1F8C1D0E2F603BA40019A501;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				1F436B2B2F710D8B00A738E6 /* XCRemoteSwiftPackageReference "netra-link" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1F8C1D182F603BA40019A501 /* Products */;
 			projectDirPath = "";
@@ -585,6 +605,34 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1F436B2B2F710D8B00A738E6 /* XCRemoteSwiftPackageReference "netra-link" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/learna2zai/netra-link";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1F436AB52F70699900A738E6 /* NetraLink */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetraLink;
+		};
+		1F436B2C2F710D8B00A738E6 /* NetraLink */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F436B2B2F710D8B00A738E6 /* XCRemoteSwiftPackageReference "netra-link" */;
+			productName = NetraLink;
+		};
+		1F436B2F2F710E6E00A738E6 /* NetraLink */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1F436B2B2F710D8B00A738E6 /* XCRemoteSwiftPackageReference "netra-link" */;
+			productName = NetraLink;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1F8C1D0F2F603BA40019A501 /* Project object */;
 }

@@ -1,0 +1,15 @@
+{
+  "originHash" : "941c0ebd65833c308b1ae124c4771080742bc7e2a4b6836154ee562dffdea274",
+  "pins" : [
+    {
+      "identity" : "netra-link",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/learna2zai/netra-link",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7c6ff891ab284bc5c451c7b4d753881b212fdce9"
+      }
+    }
+  ],
+  "version" : 3
+}

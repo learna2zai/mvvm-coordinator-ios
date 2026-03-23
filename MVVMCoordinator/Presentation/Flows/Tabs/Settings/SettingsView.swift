@@ -50,6 +50,7 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView(viewModel: MockDIContainer().makeSettingsViewModel())
-        .environment(AppCoordinator())
+    let container = MockDIContainer()
+    SettingsView(viewModel: container.makeSettingsViewModel())
+        .environment(AppCoordinator(diContainer: container))
 }
