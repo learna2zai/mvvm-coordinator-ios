@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/learna2zai/netra-link",
       "state" : {
-        "branch" : "main",
-        "revision" : "7c6ff891ab284bc5c451c7b4d753881b212fdce9"
+        "revision" : "181a6a3cec08c6dbe4ff279f07b71a5de8b7e046",
+        "version" : "1.0.0"
       }
     }
   ],

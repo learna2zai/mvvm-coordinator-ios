@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1F436B302F710E6E00A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2F2F710E6E00A738E6 /* NetraLink */; };
-		1FE3503A2F7996F600593FE8 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2C2F710D8B00A738E6 /* NetraLink */; };
+		1FFC2AF42F7BB93400C2A2C3 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436AB52F70699900A738E6 /* NetraLink */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FE3503A2F7996F600593FE8 /* NetraLink in Frameworks */,
+				1FFC2AF42F7BB93400C2A2C3 /* NetraLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -624,8 +624,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/learna2zai/netra-link";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
