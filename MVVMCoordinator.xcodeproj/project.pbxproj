@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F436AB62F70699900A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436AB52F70699900A738E6 /* NetraLink */; };
-		1F436B2D2F710D8B00A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2C2F710D8B00A738E6 /* NetraLink */; };
 		1F436B302F710E6E00A738E6 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2F2F710E6E00A738E6 /* NetraLink */; };
-		1F8C1D4F2F603BD60019A501 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1F8C1D4D2F603BD60019A501 /* .gitignore */; };
-		1F8C1D502F603BD60019A501 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1F8C1D4E2F603BD60019A501 /* README.md */; };
+		1FE3503A2F7996F600593FE8 /* NetraLink in Frameworks */ = {isa = PBXBuildFile; productRef = 1F436B2C2F710D8B00A738E6 /* NetraLink */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,9 +36,22 @@
 		1F8C1D4E2F603BD60019A501 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1FE350B02F79970D00593FE8 /* Exceptions for "MVVMCoordinator" folder in "MVVMCoordinator" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1F8C1D162F603BA40019A501 /* MVVMCoordinator */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1F8C1D192F603BA40019A501 /* MVVMCoordinator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1FE350B02F79970D00593FE8 /* Exceptions for "MVVMCoordinator" folder in "MVVMCoordinator" target */,
+			);
 			path = MVVMCoordinator;
 			sourceTree = "<group>";
 		};
@@ -62,8 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F436AB62F70699900A738E6 /* NetraLink in Frameworks */,
-				1F436B2D2F710D8B00A738E6 /* NetraLink in Frameworks */,
+				1FE3503A2F7996F600593FE8 /* NetraLink in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +206,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2630;
-				LastUpgradeCheck = 2630;
+				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					1F8C1D162F603BA40019A501 = {
 						CreatedOnToolsVersion = 26.3;
@@ -241,8 +250,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F8C1D4F2F603BD60019A501 /* .gitignore in Resources */,
-				1F8C1D502F603BD60019A501 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +365,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -414,6 +422,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -426,8 +435,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "MVVMCoordinator/Preview\\ Content";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MVVMCoordinator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,8 +470,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "MVVMCoordinator/Preview\\ Content";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MVVMCoordinator/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
