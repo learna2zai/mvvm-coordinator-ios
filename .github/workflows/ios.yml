@@ -8,53 +8,44 @@ on:
 
 jobs:
   build:
-    name: Build and Test default scheme using any available iPhone simulator
+    name: Build and Test (iOS Simulator)
     runs-on: macos-26
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Resolve Package Dependencies
+        run: xcodebuild -resolvePackageDependencies
+
+      - name: Detect Scheme
+        id: scheme
         run: |
-          xcodebuild -resolvePackageDependencies
-      
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json 2>/dev/null)
-          if [ -z "$scheme_list" ]; then
-            echo "Warning: Could not get scheme list, using first available target"
-            default=$(xcodebuild -list | grep "Schemes:" -A 100 | head -2 | tail -1 | xargs)
-          else
-            default=$(echo $scheme_list | ruby -e "require 'json'; data=JSON.parse(STDIN.gets); puts (data['project']['targets'][0] rescue data['workspace']['schemes'][0])")
-          fi
-          if [ -z "$default" ]; then
-            echo "Error: Could not determine default scheme"
+          scheme=$(xcodebuild -list -json | ruby -e "require 'json'; data=JSON.parse(STDIN.read); puts data['project']['schemes'][0] rescue data['workspace']['schemes'][0]")
+          
+          if [ -z "$scheme" ]; then
+            echo "❌ No scheme found"
             exit 1
           fi
-          echo $default | cat >default
-          echo Using default scheme: $default
-      
-      - name: Build
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          
+          echo "scheme=$scheme" >> $GITHUB_OUTPUT
+          echo "Using scheme: $scheme"
+
+      - name: Detect Project or Workspace
+        id: project
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep "iPhone" | grep "Simulator" | head -1 | sed -E 's/[[:space:]]*\([^)]*\)[[:space:]]*$//' | awk '{$1=$1;print}'`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild build-for-testing -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
-      
-      - name: Test
-        env:
-          scheme: ${{ 'default' }}
-          platform: ${{ 'iOS Simulator' }}
+          if ls *.xcworkspace 1> /dev/null 2>&1; then
+            echo "type=workspace" >> $GITHUB_OUTPUT
+            echo "file=$(ls *.xcworkspace | head -1)" >> $GITHUB_OUTPUT
+          else
+            echo "type=project" >> $GITHUB_OUTPUT
+            echo "file=$(ls *.xcodeproj | head -1)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Build & Test
         run: |
-          # xcrun xctrace returns via stderr, not the expected stdout (see https://developer.apple.com/forums/thread/663959)
-          device=`xcrun xctrace list devices 2>&1 | grep "iPhone" | grep "Simulator" | head -1 | sed -E 's/[[:space:]]*\([^)]*\)[[:space:]]*$//' | awk '{$1=$1;print}'`
-          if [ $scheme = default ]; then scheme=$(cat default); fi
-          if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
-          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=$device"
+          xcodebuild \
+            -scheme "${{ steps.scheme.outputs.scheme }}" \
+            -${{ steps.project.outputs.type }} "${{ steps.project.outputs.file }}" \
+            -destination 'platform=iOS Simulator,OS=latest' \
+            clean build test
