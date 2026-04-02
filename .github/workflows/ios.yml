@@ -57,4 +57,5 @@ jobs:
           if [ $scheme = default ]; then scheme=$(cat default); fi
           if [ "`ls -A | grep -i \.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \.xcodeproj\$`"; fi
           file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
-          xcodebuild test-without-building -scheme "$schemeTests" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=iPhone 17 Pro"
+          test_scheme=$(xcodebuild -list -json | ruby -e "require 'json'; data=JSON.parse(STDIN.read); schemes = data['project']['schemes'] || data['workspace']['schemes']; puts schemes.find { |s| s.include?('Tests') }")
+          xcodebuild test-without-building -scheme "$test_scheme" -"$filetype_parameter" "$file_to_build" -destination "platform=$platform,name=iPhone 17 Pro"
